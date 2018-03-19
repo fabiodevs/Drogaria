@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Funcionarios</title>
+	<h:outputScript library="js" name="scripts.js" />
+</h:head>
+<h:body>
+
+	<p:growl id="mensagem" />
+
+	<h:form id="formListagem">
+		<p:panel id="painel" header="Listagem - Funcionário">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado"
+				paginator="true" rows="5" value="#{funcionarioBean.funcionarios}"
+				var="funcionario">
+
+				<f:facet name="header">
+					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+						actionListener="#{funcionarioBean.novo()}"
+						update=":mensagem :formCadastro:painel :formListagem:painel">
+					</p:commandButton>
+				</f:facet>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{funcionario.pessoa.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{funcionario.pessoa.cpf}" />
+				</p:column>
+
+				<p:column headerText="Carteira de Trabalho">
+					<h:outputText value="#{funcionario.carteiraTrabalho}" />
+				</p:column>
+
+				<p:column headerText="Data de Admissão">
+					<h:outputText value="#{funcionario.dataAdmissao}" />
+				</p:column>
+
+				<p:column headerText="Opções">
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+
+	<p:dialog header="Usuário - Cadastro" widgetVar="dialogo"
+		draggable="true" modal="true" resizable="false" closable="false">
+		<h:form id="formCadastro">
+			<h:panelGrid id="painel" columns="2">
+				<p:outputLabel for="pessoa" value="Pessoa:" />
+				<p:selectOneMenu id="pessoa" filter="true" value="#{funcionarioBean.funcionario.pessoa}" required="true"
+					requiredMessage="O campo 'Pessoa' é obrigatório"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione uma pessoa" />
+					<f:selectItems value="#{funcionarioBean.pessoas}" var="pessoa"
+						itemValue="#{pessoa}" itemLabel="#{pessoa.nome} - #{pessoa.cpf}" />
+				</p:selectOneMenu>
+				
+				<h:outputLabel value="Carteira de Trabalho: " />
+				<h:inputText value="#{funcionarioBean.funcionario.carteiraTrabalho}" />
+				
+				<h:outputLabel for="dataAdmissao" value="Data de Admissão" />
+				<p:calendar id="dataAdmissao" value="#{funcionarioBean.funcionario.dataAdmissao}"
+				requiredMessage="Campo Data de Admissão obrigatório!" size="10">
+				</p:calendar>
+								
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar"
+					update=":mensagem :formCadastro:painel :formListagem:painel"
+					actionListener="#{funcionarioBean.salvar}" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+</h:body>
+</html>
