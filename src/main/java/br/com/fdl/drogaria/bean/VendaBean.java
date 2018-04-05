@@ -194,6 +194,8 @@ public class VendaBean implements Serializable {
 			}
 			VendaDAO vendaDao = new VendaDAO();
 			vendaDao.salvar(venda, itensVenda);
+			
+			novo();
 			Messages.addFlashGlobalInfo("Venda realizada com sucesso!");
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Erro ao tentar salvar!");
