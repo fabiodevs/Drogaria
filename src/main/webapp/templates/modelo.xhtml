@@ -7,15 +7,42 @@
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>SiGDro</title>
+<h:outputStylesheet library="css" name="estilo.css"/>
 </h:head>
 <h:body>
 <h:form>
 	<div id="geral">
-		<div id="topo">
-			<p:graphicImage library="images" name="banner.jpg"/>
+		<div id="topo" style="background-color: #C13236">
+			<p:graphicImage library="images" name="banner.jpg"
+			styleClass="imagemCentralizada divTopo"/>
 		</div>
 		
 		<div id="cabecalho">
+			<p:menubar>
+				<p:submenu label="Arquivo">
+					<p:menuitem value="Sair"/>
+				</p:submenu>
+				
+				<p:submenu label="Cadastros">
+					<p:menuitem value="Cidade"/>
+					<p:menuitem value="Cliente"/>
+					<p:menuitem value="Estado"/>
+					<p:menuitem value="Fabricante"/>
+					<p:menuitem value="Funcioário"/>
+					<p:menuitem value="Pessoa"/>
+					<p:menuitem value="Produto"/>
+					<p:menuitem value="Usuário"/>
+					
+				</p:submenu>
+				
+				<p:submenu label="Movimentações">
+					<p:menuitem value="Venda"/>
+				</p:submenu>
+				
+				<p:submenu label="Ajuda">
+					<p:menuitem value="Sobre"/>
+				</p:submenu>
+			</p:menubar>
 		</div>
 		
 		<div id="conteudo">
