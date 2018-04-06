@@ -3,14 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>SiGDro</title>
 <h:outputStylesheet library="css" name="estilo.css"/>
 </h:head>
 <h:body>
-<h:form>
+<p:growl id="mensagem" />
 	<div id="geral">
 		<div id="topo" style="background-color: #C13236">
 			<p:graphicImage library="images" name="banner.jpg"
@@ -18,36 +19,38 @@
 		</div>
 		
 		<div id="cabecalho">
-			<p:menubar>
-				<p:submenu label="Arquivo">
-					<p:menuitem value="Sair"/>
-				</p:submenu>
-				
-				<p:submenu label="Cadastros">
-					<p:menuitem value="Cidade"/>
-					<p:menuitem value="Cliente"/>
-					<p:menuitem value="Estado"/>
-					<p:menuitem value="Fabricante"/>
-					<p:menuitem value="Funcioário"/>
-					<p:menuitem value="Pessoa"/>
-					<p:menuitem value="Produto"/>
-					<p:menuitem value="Usuário"/>
+			<h:form>
+				<p:menubar>
+					<p:submenu label="Arquivo">
+						<p:menuitem value="Sair"/>
+					</p:submenu>
 					
-				</p:submenu>
-				
-				<p:submenu label="Movimentações">
-					<p:menuitem value="Venda"/>
-				</p:submenu>
-				
-				<p:submenu label="Ajuda">
-					<p:menuitem value="Sobre"/>
-				</p:submenu>
-			</p:menubar>
+					<p:submenu label="Cadastros">
+						<p:menuitem value="Cidade"/>
+						<p:menuitem value="Cliente"/>
+						<p:menuitem value="Estado"/>
+						<p:menuitem value="Fabricante"/>
+						<p:menuitem value="Funcioário"/>
+						<p:menuitem value="Pessoa"/>
+						<p:menuitem value="Produto"/>
+						<p:menuitem value="Usuário"/>
+						
+					</p:submenu>
+					
+					<p:submenu label="Movimentações">
+						<p:menuitem value="Venda"/>
+					</p:submenu>
+					
+					<p:submenu label="Ajuda">
+						<p:menuitem value="Sobre"/>
+					</p:submenu>
+				</p:menubar>
+			</h:form>
 		</div>
 		
 		<div id="conteudo">
+			<ui:insert name="conteudo"/>
 		</div>
 	</div>
-</h:form>
 </h:body>
 </html>
